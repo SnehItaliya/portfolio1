@@ -1,3 +1,4 @@
+"use client";
 import React, { Suspense, useMemo, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Float, OrbitControls, Stars, Html } from "@react-three/drei";
@@ -77,7 +78,7 @@ function PortfolioScene() {
   return (
     <group>
       <Glow />
-      <Stars radius={80} depth={40} count={1800} factor={4} fade speed={0.6} />
+      <Stars radius={90} depth={45} count={2200} factor={4} fade speed={0.5} />
       <FloatingKnot />
       <group position={[2.2, 0.2, -0.6]}>
         <SpinningTetra color="#22d3ee" />
@@ -175,11 +176,12 @@ function Navbar() {
   ];
   return (
     <div className="fixed top-4 left-1/2 -translate-x-1/2 z-50">
-      <nav className="backdrop-blur bg-white/5 border border-white/10 rounded-full px-4 py-2 shadow-lg">
+      <nav className="card rounded-full px-4 py-2">
         <ul className="flex items-center gap-3 sm:gap-5">
+          <li className="pr-3 mr-1 border-r border-white/10 text-white/90 hidden sm:block">Krish</li>
           {links.map((l) => (
             <li key={l.href}>
-              <a href={l.href} className="text-white/80 hover:text-white text-sm sm:text-[0.95rem]">
+              <a href={l.href} className="text-white/80 hover:text-white transition-colors text-sm sm:text-[0.95rem]">
                 {l.label}
               </a>
             </li>
@@ -209,9 +211,9 @@ function Hero() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="text-4xl sm:text-6xl font-semibold tracking-tight text-white"
+            className="text-4xl sm:text-6xl font-semibold tracking-tight"
           >
-            Krish Malinga
+            <span className="text-gradient">Sneh Italiya</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 12 }}
@@ -219,7 +221,7 @@ function Hero() {
             transition={{ duration: 0.8, delay: 0.08 }}
             className="mt-3 text-white/80 text-lg sm:text-xl max-w-2xl"
           >
-            Full‑stack developer building delightful, performant experiences. Focused on React, Next.js, Node, and 3D web.
+            Full‑stack developer crafting delightful, performant experiences. Focused on React, Next.js, Node, and 3D web.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 12 }}
@@ -234,6 +236,20 @@ function Hero() {
               Contact
             </a>
           </motion.div>
+
+          {/* Socials + scroll indicator */}
+          <div className="mt-6 flex items-center gap-4 text-white/70">
+            <a href="#" className="hover:text-white/90" aria-label="GitHub">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.4-1.35-1.77-1.35-1.77-1.11-.76.08-.75.08-.75 1.22.09 1.86 1.26 1.86 1.26 1.09 1.86 2.86 1.33 3.55 1.02.11-.8.43-1.33.78-1.63-2.66-.3-5.47-1.33-5.47-5.92 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.51.12-3.15 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6.02 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.64.25 2.85.12 3.15.77.84 1.24 1.9 1.24 3.22 0 4.6-2.81 5.61-5.49 5.91.44.38.83 1.12.83 2.26v3.35c0 .32.21.7.83.58A12 12 0 0 0 12 .5Z"/></svg>
+            </a>
+            <a href="#" className="hover:text-white/90" aria-label="LinkedIn">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.89 1.63-1.85 3.36-1.85 3.6 0 4.26 2.37 4.26 5.45v6.29ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM3.57 20.45h3.55V9H3.57v11.45Z"/></svg>
+            </a>
+            <span className="ml-auto text-xs text-white/60 flex items-center gap-2">
+              <span className="h-5 w-0.5 bg-white/30 rounded" />
+              Scroll
+            </span>
+          </div>
         </div>
       </div>
 
@@ -266,6 +282,47 @@ function Skills() {
   );
 }
 
+function Experience() {
+  const roles = [
+    {
+      period: "2024 — Present",
+      title: "Full‑stack Engineer",
+      org: "Freelance",
+      points: ["Shipped performant Next.js apps", "Built 3D interfaces with R3F"],
+    },
+    {
+      period: "2023 — 2024",
+      title: "Frontend Developer",
+      org: "Product Studio",
+      points: ["Component libraries & design systems", "Accessibility & performance"],
+    },
+  ];
+  return (
+    <div className="relative">
+      <div className="absolute left-3 top-0 bottom-0 w-px bg-white/10" />
+      <div className="space-y-6">
+        {roles.map((r) => (
+          <div key={r.title} className="relative pl-8">
+            <div className="absolute left-0 top-2 h-2 w-2 rounded-full bg-white" />
+            <div className="card p-5">
+              <div className="flex items-center justify-between text-white/80 text-sm">
+                <span>{r.period}</span>
+                <span className="text-white/60">{r.org}</span>
+              </div>
+              <h3 className="mt-2 text-lg font-medium">{r.title}</h3>
+              <ul className="mt-2 list-disc ml-5 text-white/75 text-sm">
+                {r.points.map((p) => (
+                  <li key={p}>{p}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function Portfolio3DApp() {
   const projects = useMemo(
     () => [
@@ -293,6 +350,18 @@ export default function Portfolio3DApp() {
         tags: ["Talend", "Oracle", "SQL"],
         href: "#",
       },
+      {
+        title: "Realtime Dashboard",
+        description: "WebSocket powered metrics with streaming charts and auth.",
+        tags: ["Next.js", "WebSocket", "Redis"],
+        href: "#",
+      },
+      {
+        title: "3D Product Viewer",
+        description: "R3F scene with custom controls and mobile optimizations.",
+        tags: ["R3F", "Drei", "GLTF"],
+        href: "#",
+      },
     ],
     []
   );
@@ -303,16 +372,38 @@ export default function Portfolio3DApp() {
       <Hero />
 
       <Section id="about" title="About" kicker="Introduction">
-        <p className="text-white/80 leading-relaxed max-w-3xl">
-          Builder who loves shipping polished interfaces and solving hard problems end‑to‑end. Obsessed with performance,
-          accessibility, and developer ergonomics. Comfortable across the stack from UX to infra.
-        </p>
+        <div className="grid lg:grid-cols-3 gap-6">
+          <p className="text-white/80 leading-relaxed max-w-3xl lg:col-span-2">
+            Builder who loves shipping polished interfaces and solving hard problems end‑to‑end. Obsessed with performance,
+            accessibility, and developer ergonomics. Comfortable across the stack from UX to infra.
+          </p>
+          <div className="grid grid-cols-3 gap-3 text-center">
+            <div className="card p-4">
+              <div className="text-2xl font-semibold">5+</div>
+              <div className="text-xs text-white/70">Projects</div>
+            </div>
+            <div className="card p-4">
+              <div className="text-2xl font-semibold">3D</div>
+              <div className="text-xs text-white/70">R3F</div>
+            </div>
+            <div className="card p-4">
+              <div className="text-2xl font-semibold">A11y</div>
+              <div className="text-xs text-white/70">First</div>
+            </div>
+          </div>
+        </div>
       </Section>
 
       <Section id="projects" title="Projects" kicker="Work">
         <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-5">
           {projects.map((p) => (
-            <ProjectCard key={p.title} {...p} />
+            <motion.div
+              key={p.title}
+              whileHover={{ y: -4, rotateX: 1.5, rotateY: -1.5 }}
+              transition={{ type: "spring", stiffness: 300, damping: 22 }}
+            >
+              <ProjectCard {...p} />
+            </motion.div>
           ))}
         </div>
       </Section>
@@ -321,12 +412,17 @@ export default function Portfolio3DApp() {
         <Skills />
       </Section>
 
+      <Section id="experience" title="Experience" kicker="Timeline">
+        <Experience />
+      </Section>
+
       <Section id="contact" title="Contact" kicker="Let’s build">
         <ContactForm />
       </Section>
 
+      <div className="divider max-w-6xl mx-auto" />
       <footer className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-16 text-white/60 text-sm flex items-center justify-between">
-        <span>© {new Date().getFullYear()} Krish Malinga</span>
+        <span>© {new Date().getFullYear()} Sneh Italiya</span>
         <a href="#" className="hover:text-white/90">View résumé</a>
       </footer>
     </main>

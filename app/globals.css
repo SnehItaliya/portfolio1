@@ -1,26 +1,35 @@
 @import "tailwindcss";
+@reference "tailwindcss/utilities";
+html,body,#__next{height:100%}
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Theme tokens */
+:root{
+  --grid-color: rgba(255,255,255,0.06);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Subtle grid background utility (used globally in layout) */
+.bg-grid{
+  background-size: 36px 36px;
+  background-image: 
+    linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Pretty gradient text helper */
+.text-gradient{
+  background: linear-gradient(90deg, #60a5fa, #a78bfa, #f472b6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Glassy card baseline */
+@utility card {
+  @apply rounded-2xl bg-white/5 border border-white/10 backdrop-blur shadow-lg;
+}
+
+/* Section divider */
+.divider{
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
 }
