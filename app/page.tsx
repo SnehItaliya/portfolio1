@@ -1,5 +1,6 @@
 "use client";
 import React, { Suspense, useMemo, useRef, useState } from "react";
+import * as THREE from "three";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Float, OrbitControls, Stars, Html } from "@react-three/drei";
 import { motion } from "framer-motion";
@@ -19,7 +20,7 @@ import { motion } from "framer-motion";
 
 // -------------------- 3D OBJECTS --------------------
 function SpinningTetra({ color = "#ff8a00", wire = false }) {
-  const ref = useRef();
+  const ref = useRef<THREE.Group>(null!);
   useFrame((_, delta) => {
     ref.current.rotation.x += delta * 0.3;
     ref.current.rotation.y += delta * 0.5;
@@ -39,7 +40,7 @@ function SpinningTetra({ color = "#ff8a00", wire = false }) {
 }
 
 function FloatingKnot() {
-  const ref = useRef();
+  const ref = useRef<THREE.Mesh>(null!);
   useFrame((_, delta) => {
     ref.current.rotation.x += delta * 0.25;
     ref.current.rotation.z += delta * 0.15;
