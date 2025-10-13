@@ -193,7 +193,7 @@ function Navbar() {
     <div className="fixed top-4 left-1/2 -translate-x-1/2 z-50">
       <nav className="card rounded-full px-4 py-2">
         <ul className="flex items-center gap-3 sm:gap-5">
-          <li className="pr-3 mr-1 border-r border-white/10 text-white/90 hidden sm:block">Krish</li>
+          <li className="pr-3 mr-1 border-r border-white/10 text-white/90 hidden sm:block">Sneh</li>
           {links.map((l) => (
             <li key={l.href}>
               <a href={l.href} className="text-white/80 hover:text-white transition-colors text-sm sm:text-[0.95rem]">
