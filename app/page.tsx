@@ -19,7 +19,8 @@ import { motion } from "framer-motion";
  */
 
 // -------------------- 3D OBJECTS --------------------
-function SpinningTetra({ color = "#ff8a00", wire = false }) {
+type SpinningTetraProps = { color?: string; wire?: boolean };
+function SpinningTetra({ color = "#ff8a00", wire = false }: SpinningTetraProps) {
   const ref = useRef<THREE.Group>(null!);
   useFrame((_, delta) => {
     ref.current.rotation.x += delta * 0.3;
@@ -55,7 +56,8 @@ function FloatingKnot() {
   );
 }
 
-function Glow({ color = "#f59e0b", intensity = 2 }) {
+type GlowProps = { color?: string; intensity?: number };
+function Glow({ color = "#f59e0b", intensity = 2 }: GlowProps) {
   return (
     <group>
       <pointLight position={[2, 2, 2]} intensity={intensity} color={color} />
@@ -94,7 +96,13 @@ function PortfolioScene() {
 }
 
 // -------------------- UI BLOCKS --------------------
-const Section = ({ id, title, kicker, children }) => (
+type SectionProps = {
+  id: string;
+  title: React.ReactNode;
+  kicker: React.ReactNode;
+  children: React.ReactNode;
+};
+const Section: React.FC<SectionProps> = ({ id, title, kicker, children }) => (
   <section id={id} className="scroll-mt-24 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
     <motion.h2
       className="text-2xl sm:text-3xl font-semibold tracking-tight text-white"
@@ -118,7 +126,13 @@ const Section = ({ id, title, kicker, children }) => (
   </section>
 );
 
-function ProjectCard({ title, description, tags = [], href = "#" }) {
+type ProjectCardProps = {
+  title: string;
+  description: string;
+  tags?: string[];
+  href?: string;
+};
+function ProjectCard({ title, description, tags = [], href = "#" }: ProjectCardProps) {
   return (
     <motion.a
       href={href}
@@ -150,7 +164,7 @@ function ProjectCard({ title, description, tags = [], href = "#" }) {
 
 function ContactForm() {
   const [sent, setSent] = useState(false);
-  function onSubmit(e) {
+  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setSent(true);
   }
