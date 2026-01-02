@@ -303,12 +303,14 @@ function Experience() {
       period: "2024 — Present",
       title: "Full‑stack Engineer",
       org: "Freelance",
+      orgLink: "https://snehitaliya.dev",
       points: ["Shipped performant Next.js apps", "Built 3D interfaces with R3F"],
     },
     {
       period: "2023 — 2024",
       title: "Frontend Developer",
       org: "Product Studio",
+      orgLink: "#",
       points: ["Component libraries & design systems", "Accessibility & performance"],
     },
   ];
@@ -322,7 +324,7 @@ function Experience() {
             <div className="card p-5">
               <div className="flex items-center justify-between text-white/80 text-sm">
                 <span>{r.period}</span>
-                <span className="text-white/60">{r.org}</span>
+                <a href={r.orgLink} target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white transition-colors">{r.org}</a>
               </div>
               <h3 className="mt-2 text-lg font-medium">{r.title}</h3>
               <ul className="mt-2 list-disc ml-5 text-white/75 text-sm">
@@ -345,19 +347,13 @@ export default function Portfolio3DApp() {
         title: "AI Worksheet Pro",
         description: "Multi‑curriculum generator with quizzes, vocabulary, and export workflows.",
         tags: ["React", "Node", "MySQL", "RAG"],
-        href: "#",
+        href: "https://aiworksheetpro.com",
       },
       {
-        title: "Everglow B2B",
+        title: "Gems Global Jewels",
         description: "Jewellery admin portal with dynamic SKUs, Cloudinary media, and Redis caching.",
         tags: ["React", "Express", "Redis", "Cloudinary"],
-        href: "#",
-      },
-      {
-        title: "SheridanBites",
-        description: "Food‑delivery prototype with clean architecture and testable services.",
-        tags: ["Angular", "Node", "MongoDB"],
-        href: "#",
+        href: "https://gemsglobaljewels.com",
       },
       {
         title: "ETL – Pet Rescue Charity",
@@ -369,12 +365,6 @@ export default function Portfolio3DApp() {
         title: "Realtime Dashboard",
         description: "WebSocket powered metrics with streaming charts and auth.",
         tags: ["Next.js", "WebSocket", "Redis"],
-        href: "#",
-      },
-      {
-        title: "3D Product Viewer",
-        description: "R3F scene with custom controls and mobile optimizations.",
-        tags: ["R3F", "Drei", "GLTF"],
         href: "#",
       },
     ],
@@ -438,7 +428,7 @@ export default function Portfolio3DApp() {
       <div className="divider max-w-6xl mx-auto" />
       <footer className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-16 text-white/60 text-sm flex items-center justify-between">
         <span>© {new Date().getFullYear()} Sneh Italiya</span>
-        <a href="#" className="hover:text-white/90">View résumé</a>
+        <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-white/90">view resume</a>
       </footer>
     </main>
   );
